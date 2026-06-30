@@ -1,6 +1,8 @@
 const { UptimeKumaServer } = require("./uptime-kuma-server");
 const { clearOldData } = require("./jobs/clear-old-data");
 const { incrementalVacuum } = require("./jobs/incremental-vacuum");
+const { loadAndSchedule } = require("./report/report-scheduler");
+const { log } = require("../src/util");
 const Cron = require("croner");
 
 const jobs = [
@@ -35,6 +37,14 @@ const initBackgroundJobs = async function () {
             job.jobFunc
         );
         job.croner = cornerJob;
+    }
+
+    // Resume persisted SLA report schedules on startup (Requirement 9.2).
+    // Isolated so a failure here never blocks other background jobs.
+    try {
+        await loadAndSchedule();
+    } catch (e) {
+        log.error("report-scheduler", `Failed to load report schedules: ${e.message}`);
     }
 };
 

@@ -730,6 +730,89 @@ export default {
         getMonitorChartData(monitorID, period, callback) {
             socket.emit("getMonitorChartData", monitorID, period, callback);
         },
+
+        // --- Report Module ---
+
+        /**
+         * Generate an on-demand report for the given request parameters
+         * @param {object} reportRequest The Report_Request object
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        generateReport(reportRequest, callback) {
+            socket.emit("generateReport", reportRequest, callback);
+        },
+
+        /**
+         * Export a report in the specified format (pdf/csv)
+         * @param {object} reportRequest The Report_Request object
+         * @param {string} format Export format ("pdf" or "csv")
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        exportReport(reportRequest, format, callback) {
+            socket.emit("exportReport", { reportRequest, format }, callback);
+        },
+
+        /**
+         * Get all report schedules
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        getReportSchedules(callback) {
+            socket.emit("getReportSchedules", callback);
+        },
+
+        /**
+         * Get a single report schedule by ID
+         * @param {number} scheduleId ID of the schedule to retrieve
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        getReportSchedule(scheduleId, callback) {
+            socket.emit("getReportSchedule", scheduleId, callback);
+        },
+
+        /**
+         * Add a new report schedule
+         * @param {object} schedule The schedule configuration to save
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        addReportSchedule(schedule, callback) {
+            socket.emit("addReportSchedule", schedule, callback);
+        },
+
+        /**
+         * Edit an existing report schedule
+         * @param {number} scheduleId ID of the schedule to edit
+         * @param {object} schedule Updated schedule configuration
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        editReportSchedule(scheduleId, schedule, callback) {
+            socket.emit("editReportSchedule", scheduleId, schedule, callback);
+        },
+
+        /**
+         * Delete a report schedule
+         * @param {number} scheduleId ID of the schedule to delete
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        deleteReportSchedule(scheduleId, callback) {
+            socket.emit("deleteReportSchedule", scheduleId, callback);
+        },
+
+        /**
+         * Get run logs for a report schedule
+         * @param {number} scheduleId ID of the schedule to get logs for
+         * @param {socketCB} callback Callback for socket response
+         * @returns {void}
+         */
+        getReportRunLogs(scheduleId, callback) {
+            socket.emit("getReportRunLogs", scheduleId, callback);
+        },
     },
 
     computed: {

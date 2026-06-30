@@ -17,6 +17,9 @@ import AddStatusPage from "./pages/AddStatusPage.vue";
 import NotFound from "./pages/NotFound.vue";
 import DockerHosts from "./components/settings/Docker.vue";
 import ManageMaintenance from "./pages/ManageMaintenance.vue";
+import ReportView from "./pages/ReportView.vue";
+import ReportSchedules from "./pages/ReportSchedules.vue";
+import ReportScheduleForm from "./pages/ReportScheduleForm.vue";
 import APIKeys from "./components/settings/APIKeys.vue";
 import SetupDatabase from "./pages/SetupDatabase.vue";
 
@@ -160,6 +163,22 @@ const routes = [
                     {
                         path: "/maintenance/clone/:id",
                         component: EditMaintenance,
+                    },
+                    {
+                        path: "/report",
+                        component: ReportView,
+                    },
+                    {
+                        path: "/report-schedules",
+                        component: ReportSchedules,
+                    },
+                    {
+                        path: "/report-schedules/add",
+                        component: ReportScheduleForm,
+                    },
+                    {
+                        path: "/report-schedules/edit/:id",
+                        component: ReportScheduleForm,
                     },
                 ],
             },

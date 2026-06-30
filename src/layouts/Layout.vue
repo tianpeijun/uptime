@@ -85,6 +85,28 @@
 
                             <li>
                                 <router-link
+                                    to="/report"
+                                    class="dropdown-item"
+                                    :class="{ active: $route.path.includes('report') }"
+                                >
+                                    <font-awesome-icon icon="chart-bar" />
+                                    {{ $t("SLA Report") }}
+                                </router-link>
+                            </li>
+
+                            <li>
+                                <router-link
+                                    to="/report-schedules"
+                                    class="dropdown-item"
+                                    :class="{ active: $route.path.includes('report-schedules') }"
+                                >
+                                    <font-awesome-icon icon="clock" />
+                                    {{ $t("Report Schedules") }}
+                                </router-link>
+                            </li>
+
+                            <li>
+                                <router-link
                                     to="/settings/general"
                                     class="dropdown-item"
                                     :class="{ active: $route.path.includes('settings') }"
